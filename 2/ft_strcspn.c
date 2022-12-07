@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: polpi <polpi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:47:14 by polpi             #+#    #+#             */
-/*   Updated: 2022/12/06 17:10:15 by polpi            ###   ########.fr       */
+/*   Created: 2022/12/07 14:10:06 by polpi             #+#    #+#             */
+/*   Updated: 2022/12/07 14:45:39 by polpi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
 
-int	ft_atoi(const char *str)
+size_t  ft_strcspn(const char *s, const char *charset)
 {
-    int res;
-    int sign;
+    size_t  i;
 
-    res = 0;
-    sign = 1;
-    while (*str != '\0')
+    i = 0;
+    while (*s != '\0')
     {
-        if (*str >= 9 && *str <= 13 && *str == 32)
-            str++;
-        if (*str == '-')
-            sign = -1;
-        if (*str == '-' || *str == '+')
-            str++;
-        if (*str >= '0' && *str <= '9')
-            res = res * 10 + (*str - 48);
-        str++;
+        while (*charset != '\0')
+        {
+            if (*charset == *s)
+                return (0);
+            charset++;
+        }
+        i++;
+        s++;
     }
-    return (res * sign);
+    return (i);
 }
+
+
 int main(int ac, char **av)
 {
     (void)ac;
-    printf("%d", ft_atoi(av[1]));
+    printf("%s\n", "-----Real function-----");
+    printf("%lu\n", strcspn(av[1], av[2]));
+    printf("%s\n", "-----My function-----");
+    printf("%zu\n", ft_strcspn(av[1], av[2]));
 }
