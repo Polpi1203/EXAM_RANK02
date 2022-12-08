@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 10:59:27 by afaucher          #+#    #+#             */
-/*   Updated: 2022/12/08 11:29:16 by afaucher         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:18:01 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ int main(int ac, char **av)
     len = ft_strlen(av[1]);
     if (ac == 2)
     {
-        while (av[1][len] == 9 || av[1][len] == 32)
+        while (av[1][len] == 9 || av[1][len] == 32 || av[1][len] == '\0')
             len--;
-        while (av[1][len] != 9 && av[1][len] != 32)
+        while (av[1][len] != 9 && av[1][len] != 32 && len > 0)
         {
             i++;
             len--;
         }
         len = len + 1;
-        i = i - 1;
         while (i > 0)
         {
             write (1, &av[1][len], 1);
